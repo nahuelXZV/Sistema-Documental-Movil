@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sistemadocumental/model/direccion.dart';
 import 'package:sistemadocumental/view/register.dart';
 import 'package:sistemadocumental/view/welcome.dart';
 
@@ -37,11 +38,12 @@ class _pageLoginState extends State<pageLogin> {
 
   Future<void> _login() async {
     if (_email.text.isNotEmpty && _password.text.isNotEmpty) {
-      var url = Uri.parse('https://sistema-documental.herokuapp.com/api/login');
+      var url = Uri.parse(Direccion().servidor + 'login');
       Map data = {
         'email': _email.text,
         'password': _password.text,
       };
+      print(url.toString());
       var response = await http.post(url, body: data);
       if (response.statusCode == 200) {
         String body = utf8.decode(response.bodyBytes);

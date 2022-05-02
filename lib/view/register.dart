@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sistemadocumental/model/direccion.dart';
 import 'package:sistemadocumental/view/login.dart';
 import 'package:sistemadocumental/view/welcome.dart';
 
@@ -35,8 +36,7 @@ class _pageRegisterState extends State<pageRegister> {
     if (_email.text.isNotEmpty &&
         _password.text.isNotEmpty &&
         _name.text.isNotEmpty) {
-      var url =
-          Uri.parse('https://sistema-documental.herokuapp.com/api/register');
+      var url = Uri.parse(Direccion().servidor + 'register');
       Map data = {
         'name': _name.text,
         'email': _email.text,
